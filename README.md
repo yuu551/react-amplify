@@ -1,23 +1,22 @@
-# Amplify Gen2 + React によるセキュアなPLC制御システム
+# Amplify Gen2 + React によるサンプルシステム
 
 ## 概要
 
-このプロジェクトは、AWS Amplify Gen2とReact 19を使用したモダンで安全なPLC制御システムの実装例です。
-最新のセキュリティベストプラクティスと、エンタープライズグレードの機能を提供します。
+このプロジェクトは、AWS Amplify Gen2とReactを使用したシステムの実装例です。
 
 ## 主要な特徴
 
 ### セキュリティ機能
-- ✅ **Built-in PKCE**: Amplify Gen2が自動的にPKCE認証を実装
+- ✅ **認証機能**: Amplify Gen2によるセキュアな認証
 - ✅ **多要素認証（MFA）**: オプションで有効化可能
 - ✅ **Parameter Store統合**: 機密情報の暗号化管理
 - ✅ **包括的な監査ログ**: CloudWatch Logsによる全操作記録
 - ✅ **Type-safe API**: TypeScriptによる型安全なAPI呼び出し
 
 ### 技術スタック
-- **フロントエンド**: React 19 + TypeScript + Tailwind CSS
+- **フロントエンド**: React + TypeScript + Tailwind CSS
 - **バックエンド**: AWS Amplify Gen2
-- **認証**: Amazon Cognito（PKCE自動実装）
+- **認証**: Amazon Cognito
 - **API**: AWS AppSync（GraphQL）
 - **データ**: AWS DynamoDB
 - **関数**: AWS Lambda
@@ -32,7 +31,7 @@ graph TB
     B --> C[AWS Amplify Libraries]
     
     %% Authentication Flow
-    C --> D[Amazon Cognito<br/>PKCE Auth]
+    C --> D[Amazon Cognito<br/>Auth]
     D --> E[User Pool]
     D --> F[Identity Pool]
     
@@ -75,7 +74,7 @@ sequenceDiagram
     participant P as PLC
     
     U->>R: Access Application
-    R->>C: PKCE Authentication
+    R->>C: Authentication
     C-->>R: JWT Tokens
     R->>A: GraphQL Query/Mutation
     A->>L: Execute Function
@@ -89,7 +88,7 @@ sequenceDiagram
 ## セキュリティ強化点
 
 ### 従来の問題点からの改善
-- ❌ → ✅ クライアントシークレット露出 → PKCE自動実装
+- ❌ → ✅ クライアントシークレット露出 → セキュアな認証実装
 - ❌ → ✅ 機密情報のハードコード → Parameter Store暗号化
 - ❌ → ✅ 型安全性なし → TypeScriptによる完全な型保証
 - ❌ → ✅ 監査ログ不足 → 包括的なCloudWatch Logs統合
@@ -161,7 +160,7 @@ npm run dev
 
 ### PLC制御
 
-認証後、以下の操作が可能です：
+認証後、以下の操作が可能です。
 
 - **コマンド選択**: read/write
 - **エリア選択**: DM/HR/WR
@@ -170,7 +169,7 @@ npm run dev
 
 ### 監査ログ表示
 
-「監査ログ」タブで以下の情報を確認できます：
+「監査ログ」タブで以下の情報を確認できます。
 - 操作履歴
 - ユーザー情報
 - タイムスタンプ
