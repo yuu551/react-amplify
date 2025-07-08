@@ -115,17 +115,7 @@ cd react-amplify
 npm install
 ```
 
-### 3. Amplify 環境の設定
-
-```bash
-# Amplify CLIのインストール（未インストールの場合）
-npm install -g @aws-amplify/cli
-
-# バックエンドのデプロイ
-npx ampx sandbox
-```
-
-### 4. 環境設定の更新
+### 3. 環境設定の更新
 
 `amplify/backend.ts` を編集して、以下の値を実際の環境に合わせて変更してください：
 
@@ -144,16 +134,17 @@ const mqttTopicParam = new ssm.StringParameter(functionStack, 'MqttTopicParamete
 });
 ```
 
-### 5. amplify_outputs.json の設定
-
-`amplify_outputs.json.example` を `amplify_outputs.json` にコピーし、実際の値を設定してください：
+### 4. Amplify 環境の設定
 
 ```bash
-cp amplify_outputs.json.example amplify_outputs.json
-# ファイルを編集して実際の値を設定
+# Amplify CLIのインストール（未インストールの場合）
+npm install -g @aws-amplify/cli
+
+# バックエンドのデプロイ
+npx ampx sandbox
 ```
 
-### 6. ローカル開発サーバーの起動
+### 5. ローカル開発サーバーの起動
 
 ```bash
 npm run dev
@@ -207,92 +198,3 @@ react-amplify/
 │   └── architecture.md         # 詳細なアーキテクチャ説明
 └── README.md                   # このファイル
 ```
-
-## 本番環境への移行
-
-### 1. 実際のPLC通信実装
-
-```typescript
-// amplify/functions/plc-command/handler.ts の実装を更新
-async function executePlcCommand(params) {
-  // TODO: 実際のPLCプロトコル実装
-  // - TCP/IP通信
-  // - Modbus実装
-  // - その他産業用プロトコル
-}
-```
-
-### 2. ネットワークセキュリティ
-
-- Lambda を VPC 内に配置
-- セキュリティグループの適切な設定
-- プライベートサブネットでのPLC通信
-
-### 3. 監視・アラート
-
-```typescript
-// CloudWatch Alarms の設定
-const alarm = new cloudwatch.Alarm(this, 'PlcErrorAlarm', {
-  metric: errorMetric,
-  threshold: 5,
-  evaluationPeriods: 1,
-});
-```
-
-### 4. 可用性向上
-
-- Multi-AZ構成
-- Auto Scaling設定
-- バックアップ戦略
-
-## トラブルシューティング
-
-### よくある問題
-
-**Q: amplify sandbox でエラーが発生する**
-A: AWS CLIの認証情報と権限を確認してください
-
-**Q: Parameter Store の値が取得できない**
-A: Lambda関数のIAM権限を確認してください
-
-**Q: GraphQL APIでエラーが発生する**
-A: `amplify_outputs.json` の設定値を確認してください
-
-## セキュリティ考慮事項
-
-1. **最小権限の原則**: IAMロールは必要最小限の権限のみ付与
-2. **暗号化**: すべての機密情報はParameter Storeで暗号化
-3. **監査**: 全操作がCloudWatch Logsに記録される
-4. **認証**: Cognitoによる強固な認証・認可
-
-## パフォーマンス最適化
-
-- React.lazy() によるコード分割
-- useMemo/useCallback による再レンダリング最適化
-- GraphQL クエリの最適化
-- Lambda コールドスタート対策
-
-## コスト最適化
-
-月額コスト概算（1,000 MAU）:
-- Amplify Hosting: $0.15
-- Cognito: $5.50
-- AppSync: $4.00
-- Lambda: $1.00
-- DynamoDB: $0.25
-- **合計**: 約$10.90
-
-## ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。
-
-## 貢献
-
-バグ報告や機能要求は、GitHubのIssuesでお願いします。
-
-## 関連リンク
-
-- [AWS Amplify Gen2 Documentation](https://docs.amplify.aws/)
-- [React Documentation](https://react.dev/)
-- [AWS AppSync Documentation](https://docs.aws.amazon.com/appsync/)
-- [TypeScript Documentation](https://www.typescriptlang.org/)
