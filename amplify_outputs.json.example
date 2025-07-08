@@ -1,0 +1,105 @@
+{
+  "auth": {
+    "user_pool_id": "YOUR_REGION_YOUR_USER_POOL_ID",
+    "aws_region": "YOUR_AWS_REGION",
+    "user_pool_client_id": "YOUR_USER_POOL_CLIENT_ID",
+    "identity_pool_id": "YOUR_REGION:YOUR_IDENTITY_POOL_ID",
+    "mfa_methods": [],
+    "standard_required_attributes": [
+      "email"
+    ],
+    "username_attributes": [
+      "email"
+    ],
+    "user_verification_types": [
+      "email"
+    ],
+    "groups": [],
+    "mfa_configuration": "NONE",
+    "password_policy": {
+      "min_length": 8,
+      "require_lowercase": true,
+      "require_numbers": true,
+      "require_symbols": true,
+      "require_uppercase": true
+    },
+    "unauthenticated_identities_enabled": true
+  },
+  "data": {
+    "url": "https://YOUR_API_ID.appsync-api.YOUR_REGION.amazonaws.com/graphql",
+    "aws_region": "YOUR_AWS_REGION",
+    "default_authorization_type": "AMAZON_COGNITO_USER_POOLS",
+    "authorization_types": [
+      "AWS_IAM"
+    ],
+    "model_introspection": {
+      "version": 1,
+      "models": {},
+      "enums": {},
+      "nonModels": {},
+      "queries": {
+        "getAuditLogs": {
+          "name": "getAuditLogs",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "startTime": {
+              "name": "startTime",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false
+            },
+            "endTime": {
+              "name": "endTime",
+              "isArray": false,
+              "type": "AWSDateTime",
+              "isRequired": false
+            },
+            "limit": {
+              "name": "limit",
+              "isArray": false,
+              "type": "Int",
+              "isRequired": false
+            }
+          }
+        }
+      },
+      "mutations": {
+        "executePlcCommand": {
+          "name": "executePlcCommand",
+          "isArray": false,
+          "type": "AWSJSON",
+          "isRequired": false,
+          "arguments": {
+            "command": {
+              "name": "command",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "value": {
+              "name": "value",
+              "isArray": false,
+              "type": "String",
+              "isRequired": true
+            },
+            "area": {
+              "name": "area",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            },
+            "address": {
+              "name": "address",
+              "isArray": false,
+              "type": "String",
+              "isRequired": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "version": "1.4"
+}

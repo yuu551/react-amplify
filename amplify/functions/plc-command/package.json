@@ -1,0 +1,14 @@
+{
+  "name": "plc-command-handler",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-ssm": "^3.734.0",
+    "@aws-sdk/client-cloudwatch-logs": "^3.734.0",
+    "@aws-sdk/client-dynamodb": "^3.734.0",
+    "@aws-sdk/lib-dynamodb": "^3.734.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.150"
+  }
+}

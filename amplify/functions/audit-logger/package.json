@@ -1,0 +1,11 @@
+{
+  "name": "audit-logger-handler",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch-logs": "^3.734.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.160"
+  }
+}
